@@ -7,13 +7,13 @@ namespace XGDAVIDYT\XGTAntiXRay;
 use CortexPE\DiscordWebhookAPI\Message;
 use CortexPE\DiscordWebhookAPI\Webhook;
 use pocketmine\block\Diamond;
+use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\plugin\PluginBase;
 use pocketmine\command\CommandSender;
 use pocketmine\command\Command;
 use pocketmine\Player;
 use pocketmine\event\entity;
 use pocketmine\event\Listener;
-use pocketmine\event\block\Blockbreakvent;
 use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\block\{DiamondOre, IronOre, GoldOre, EmeraldOre, RedstoneOre, CoalOre, LapisOre};
 use pocketmine\utils\Config;
@@ -31,7 +31,7 @@ class Main extends PluginBase implements Listener{
 
 
 
-    public function onBreakOre(Blockbreakvent $event){
+    public function onBreakOre(BlockBreakEvent $event){
 	    $webhook = new Webhook($this->config->get("Webhook"));
 	    $message = new Message();
 	    $message->setUsername("PMnS Alert");
