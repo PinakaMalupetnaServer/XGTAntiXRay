@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace XGDAVIDYT\XGTAntiXRay;
 
+use CortexPE\DiscordWebhookAPI\Message;
+use CortexPE\DiscordWebhookAPI\Webhook;
+use pocketmine\block\Diamond;
 use pocketmine\plugin\PluginBase;
 use pocketmine\command\CommandSender;
 use pocketmine\command\Command;
 use pocketmine\Player;
 use pocketmine\event\entity;
 use pocketmine\event\Listener;
-use pocketmine\event\block\BlockBreakEvent;
+use pocketmine\event\block\Blockbreakvent;
 use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\block\{DiamondOre, IronOre, GoldOre, EmeraldOre, RedstoneOre, CoalOre, LapisOre};
 use pocketmine\utils\Config;
@@ -26,7 +29,13 @@ class Main extends PluginBase implements Listener{
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
 
-    public function onBreakOre(BlockBreakEvent $event){
+
+
+    public function onBreakOre(Blockbreakvent $event){
+	    $webhook = new Webhook($this->config->get("Webhook"));
+	    $message = new Message();
+	    $message->setUsername("PMnS Alert");
+	    $message->setAvatarURL("https://cdn.discordapp.com/attachments/915920719655862342/915920799557357598/pmnsoldlogo.png");
 		$player = $event->getPlayer();
 		$name = $player->getName();
 		$block = $event->getBlock();
@@ -35,7 +44,9 @@ class Main extends PluginBase implements Listener{
 				if($block instanceof IronOre){
 					foreach($this->getServer()->getOnlinePlayers() as $op) {
 						if($op->hasPermission("xgtantixray.break")){
-							$op->sendMessage("§cAdmWarning: " . $name . "§c breake " . $block ." !");
+							$op->sendMessage("§cAdmWarning: " . $name . "§c break " . $block ." !");
+							$message->setContent($name . " break ". $block);
+							$webhook->send($message);
 						}
 					}
 				}
@@ -44,7 +55,9 @@ class Main extends PluginBase implements Listener{
 				if($block instanceof CoalOre){
 					foreach($this->getServer()->getOnlinePlayers() as $op) {
 						if($op->hasPermission("xgtantixray.break")){
-							$op->sendMessage("§cAdmWarning: " . $name . "§c breake " . $block ." !");
+							$op->sendMessage("§cAdmWarning: " . $name . "§c break " . $block ." !");
+                            $message->setContent($name . " break ". $block);
+                            $webhook->send($message);
 						}
 					}
 				}
@@ -53,7 +66,9 @@ class Main extends PluginBase implements Listener{
 				if($block instanceof GoldOre){
 					foreach($this->getServer()->getOnlinePlayers() as $op) {
 						if($op->hasPermission("xgtantixray.break")){
-							$op->sendMessage("§cAdmWarning: " . $name . "§c breake " . $block ." !");
+							$op->sendMessage("§cAdmWarning: " . $name . "§c break " . $block ." !");
+                            $message->setContent($name . " break ". $block);
+                            $webhook->send($message);
 						}
 					}
 				}
@@ -62,7 +77,9 @@ class Main extends PluginBase implements Listener{
 				if($block instanceof RedstoneOre){
 					foreach($this->getServer()->getOnlinePlayers() as $op) {
 						if($op->hasPermission("xgtantixray.break")){
-							$op->sendMessage("§cAdmWarning: " . $name . "§c breake " . $block ." !");
+							$op->sendMessage("§cAdmWarning: " . $name . "§c break " . $block ." !");
+                            $message->setContent($name . " break ". $block);
+                            $webhook->send($message);
 						}
 					}
 				}
@@ -71,7 +88,9 @@ class Main extends PluginBase implements Listener{
 				if($block instanceof LapisOre){
 					foreach($this->getServer()->getOnlinePlayers() as $op) {
 						if($op->hasPermission("xgtantixray.break")){
-							$op->sendMessage("§cAdmWarning: " . $name . "§c breake " . $block ." !");
+							$op->sendMessage("§cAdmWarning: " . $name . "§c break " . $block ." !");
+                            $message->setContent($name . " break ". $block);
+                            $webhook->send($message);
 						}
 					}
 				}
@@ -80,7 +99,9 @@ class Main extends PluginBase implements Listener{
 				if($block instanceof EmeraldOre){
 					foreach($this->getServer()->getOnlinePlayers() as $op) {
 						if($op->hasPermission("xgtantixray.break")){
-							$op->sendMessage("§cAdmWarning: " . $name . "§c breake " . $block ." !");
+							$op->sendMessage("§cAdmWarning: " . $name . "§c break " . $block ." !");
+                            $message->setContent($name . " break ". $block);
+                            $webhook->send($message);
 						}
 					}
 				}
@@ -89,7 +110,9 @@ class Main extends PluginBase implements Listener{
 				if($block instanceof DiamondOre or $block instanceof Diamond){
 					foreach($this->getServer()->getOnlinePlayers() as $op) {
 						if($op->hasPermission("xgtantixray.break") or $op->isOp()){
-							$op->sendMessage("§cAdmWarning: " . $name . "§c breake " . $block ." !");
+							$op->sendMessage("§cAdmWarning: " . $name . "§c break " . $block ." !");
+                            $message->setContent($name . " break ". $block);
+                            $webhook->send($message);
 						}
 					}
 				}

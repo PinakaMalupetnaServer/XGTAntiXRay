@@ -17,4 +17,4 @@ EmeraldOre: 0
 DiamondOre: 1
 
 # Webhook | Discord Webhook API Only
-webhook: ""
+Webhook: ""
